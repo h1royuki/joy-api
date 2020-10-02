@@ -6,7 +6,7 @@ export default class Post {
     private _id: number|null;
     private _content: Content | null;
     private _author: User | null;
-    private _tags: Array<string> | null;
+    private _tags: string[] | null;
     private _date: number | null;
     private _commentsCount: number | null;
     private _rating: number | null;
@@ -45,11 +45,11 @@ export default class Post {
         this._author = value;
     }
 
-    get tags(): Array<string> | null {
+    get tags(): string[] | null {
         return this._tags;
     }
 
-    set tags(value: Array<string> | null) {
+    set tags(value: string[] | null) {
         this._tags = value;
     }
 

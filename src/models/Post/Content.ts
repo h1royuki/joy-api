@@ -1,17 +1,17 @@
 import ContentElement from "./Content/ContentElement";
 
 export default class Content {
-    private _elements: Array<ContentElement>;
+    private _elements: ContentElement[];
 
     constructor() {
         this._elements = [];
     }
 
-    get elements(): Array<ContentElement> {
+    get elements(): ContentElement[] {
         return this._elements;
     }
 
-    set elements(value: Array<ContentElement>) {
+    set elements(value: ContentElement[]) {
         this._elements = value;
     }
 
