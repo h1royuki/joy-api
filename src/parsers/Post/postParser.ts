@@ -25,13 +25,9 @@ class PostParser {
 
     private static parseContent($post: Root): Content {
         const content = new Content();
+        const elements: Element[] = $post('.post_content')[0].children;
 
-        const firstType: Element = $post('.post_content > div')[0];
-        const secondType: Element = $post('.post_content')[0];
-
-        const contentElements: Element[] = firstType.children.length > 0 ? firstType.children : secondType.children;
-
-        content.elements = contentParser.parse(contentElements);
+        content.elements = contentParser.parse(elements);
 
         return content;
     }

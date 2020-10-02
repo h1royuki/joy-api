@@ -16,14 +16,32 @@ class ContentParser {
                     object.childrens = this.parse(el.children);
                 }
 
-                object.type = el.name ? el.name : el.type;
-                object.data = el.data ? el.data : null;
+                ContentParser.parseType(el, object);
+                ContentParser.parseData(el, object);
             }
 
             contentElements.push(object);
         })
 
         return contentElements;
+    }
+
+    private static parseData(el: Element, object: ContentElement): ContentElement {
+        object.data = el.data ? el.data : null
+        if (el.name === ContentElement.LINK_TYPE) {
+            object.data = el.attribs ? el.attribs.href : null;
+        } else {
+            object.data = el.data ? el.data : null
+        }
+
+        return object;
+    }
+
+
+    private static parseType(el: Element, object: ContentElement): ContentElement {
+        object.type = el.name ? el.name : el.type;
+
+        return object;
     }
 
     private static parseMediaContent(el: Element, object: ContentElement): ContentElement {

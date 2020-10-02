@@ -2,7 +2,8 @@ export default class ContentElement {
 
     public static readonly IMAGE_TYPE = 'image';
     public static readonly IFRAME_TYPE = 'iframe';
-    public static readonly VIDEO_TYPE = 'video'
+    public static readonly VIDEO_TYPE = 'video';
+    public static readonly LINK_TYPE = 'a';
 
     private _type: string|null;
     private _data: string|number|null;
