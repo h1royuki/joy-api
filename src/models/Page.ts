@@ -2,7 +2,7 @@ import Post from "./Post";
 
 export default class Page {
 
-    private readonly _posts: Array<Post>;
+    private readonly _posts: Post[];
     private _prevPage: number | null;
     private _nextPage: number | null;
 
@@ -12,7 +12,7 @@ export default class Page {
         this._prevPage = null;
     }
 
-    get posts(): Array<Post> | undefined {
+    get posts(): Post[] | undefined {
         return this._posts;
     }
 

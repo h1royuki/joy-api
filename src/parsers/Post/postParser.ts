@@ -29,7 +29,7 @@ class PostParser {
         const firstType: Element = $post('.post_content > div')[0];
         const secondType: Element = $post('.post_content')[0];
 
-        const contentElements: Array<Element> = firstType.children.length > 0 ? firstType.children : secondType.children;
+        const contentElements: Element[] = firstType.children.length > 0 ? firstType.children : secondType.children;
 
         content.elements = contentParser.parse(contentElements);
 
@@ -68,8 +68,8 @@ class PostParser {
         return user;
     }
 
-    private static parsePostTags($post: Root): Array<string> {
-        const tags: Array<string> = [];
+    private static parsePostTags($post: Root): string[] {
+        const tags: string[] = [];
         const elements = $post('.taglist > b > a');
 
         elements.map((i: number, el: Element) => {

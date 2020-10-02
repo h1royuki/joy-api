@@ -6,7 +6,7 @@ export default class ContentElement {
 
     private _type: string|null;
     private _data: string|number|null;
-    private _childrens : Array<ContentElement>;
+    private _childrens : ContentElement[];
 
     constructor() {
         this._childrens = [];
@@ -30,11 +30,11 @@ export default class ContentElement {
         this._data = value;
     }
 
-    get childrens(): Array<ContentElement> {
+    get childrens(): ContentElement[] {
         return this._childrens;
     }
 
-    set childrens(value: Array<ContentElement>) {
+    set childrens(value: ContentElement[]) {
         this._childrens = value;
     }
 }

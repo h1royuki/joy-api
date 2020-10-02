@@ -3,8 +3,8 @@ import Element = cheerio.Element;
 
 class ContentParser {
 
-    public parse(elements: Array<Element>): Array<ContentElement> {
-        const contentElements: Array<ContentElement> = [];
+    public parse(elements: Element[]): ContentElement[] {
+        const contentElements: ContentElement[] = [];
 
         elements.map((el) => {
             const object = new ContentElement();
@@ -15,7 +15,6 @@ class ContentParser {
                 if (el.children && el.children.length > 0) {
                     object.childrens = this.parse(el.children);
                 }
-
 
                 object.type = el.name ? el.name : el.type;
                 object.data = el.data ? el.data : null;
