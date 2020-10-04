@@ -1,15 +1,14 @@
 {
-  "name": "joy-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
+  "name": "simple-joy-api",
+  "version": "1.0.2",
+  "main": "dist/index.js",
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "h1royuki",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
@@ -23,5 +22,14 @@
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
     "tslint": "^6.1.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h1royuki/joy-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h1royuki/joy-api/issues"
+  },
+  "homepage": "https://github.com/h1royuki/joy-api#readme",
+  "description": ""
 }
