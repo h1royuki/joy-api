@@ -11,37 +11,56 @@ class ContentParser {
 
             if (el.attribs && el.attribs.class === 'image') {
                 ContentParser.parseMediaContent(el, object);
+                contentElements.push(object);
             } else {
-                if (el.children && el.children.length > 0) {
-                    object.childrens = this.parse(el.children);
+                ContentParser.parseTextContent(el, object);
+
+                if (object.data) {
+                    contentElements.push(object);
                 }
 
-                ContentParser.parseType(el, object);
-                ContentParser.parseData(el, object);
+                if (el.children) {
+                    contentElements.push(...this.parse(el.children));
+                }
             }
-
-            contentElements.push(object);
         })
 
         return contentElements;
     }
 
-    private static parseData(el: Element, object: ContentElement): ContentElement {
-        object.data = el.data ? el.data : null
-        if (el.name === ContentElement.LINK_TYPE) {
-            object.data = el.attribs ? el.attribs.href : null;
-        } else {
-            object.data = el.data ? el.data : null
+    private static parseTextContent(el: Element, object: ContentElement): ContentElement {
+        const textTags = ['h3', 'p'];
+
+        if (textTags.includes(el.name)) {
+            object.type = el.name;
+            object.data = ContentParser.searchText(el.children);
+        }
+
+        if (el.name === 'a') {
+            if (el.attribs.href) {
+                object.type = 'a';
+                object.data = el.children[0] ? String(el.children[0].data) : null;
+                object.link = el.attribs.href;
+            }
         }
 
         return object;
     }
 
+    private static searchText(elements: Element[]): string | null {
+        let text: string|null = null;
 
-    private static parseType(el: Element, object: ContentElement): ContentElement {
-        object.type = el.name ? el.name : el.type;
+        elements.map((el) => {
+            if(el.data && el.data.length > 0) {
+                text = el.data;
+            }
 
-        return object;
+            if(!text && el.children.length > 0) {
+                text = ContentParser.searchText(el.children);
+            }
+        })
+
+        return text;
     }
 
     private static parseMediaContent(el: Element, object: ContentElement): ContentElement {
