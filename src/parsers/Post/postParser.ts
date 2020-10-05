@@ -56,9 +56,9 @@ class PostParser {
         const link: Element = $post('.uhead_nick > img')[0];
 
         const nickname: string = link.attribs.alt;
-        const id = link.attribs.src.match(/\d+/);
+        const id = link.attribs.src.match(/\/(\d+)/);
 
-        user.id = id ? Number(id[0]) : id;
+        user.id = id ? Number(id[1]) : null;
         user.nickname = nickname;
 
         return user;

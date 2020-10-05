@@ -36,6 +36,11 @@ class ContentParser {
             object.data = ContentParser.searchText(el.children);
         }
 
+        if (el.type === 'text') {
+            object.type = 'p';
+            object.data = el.data ? el.data : null;
+        }
+
         if (el.name === 'a') {
             if (el.attribs.href) {
                 object.type = 'a';
@@ -48,15 +53,15 @@ class ContentParser {
     }
 
     private static searchText(elements: Element[]): string | null {
-        let text: string|null = null;
+        let text: string = '';
 
         elements.map((el) => {
             if(el.data && el.data.length > 0) {
-                text = el.data;
+                text += el.data + ' ';
             }
 
-            if(!text && el.children.length > 0) {
-                text = ContentParser.searchText(el.children);
+            if(el.children) {
+                text += ContentParser.searchText(el.children);
             }
         })
 
@@ -73,12 +78,12 @@ class ContentParser {
 
         if (children.name === 'a') {
             object.type = ContentElement.IMAGE_TYPE;
-            object.data = children.children[0].attribs.src;
+            object.data = children.children[0] ? children.children[0].attribs.src : null;
         }
 
         if (children.name === 'span') {
             object.type = ContentElement.VIDEO_TYPE;
-            object.data = children.children[0].attribs.href;
+            object.data = children.children[0] ? children.children[0].attribs.href : null;
         }
 
         if (children.name === 'iframe') {
