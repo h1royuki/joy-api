@@ -40,9 +40,13 @@ class PostParser {
     }
 
     private static parsePostRating($post: Root): number | null {
-        const el: Element = $post('.post_rating > span')[0].children[0];
+        const el = $post('.post_rating > span');
 
-        return el.data ? Number(el.data) : null;
+        if(el[0]) {
+            return el[0].children ? Number(el[0].children[0].data) : null;
+        }
+
+        return null;
     }
 
     private static parsePostDate($post: Root): number | null {
