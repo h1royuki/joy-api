@@ -29,7 +29,7 @@ export class JoyApi {
             url += tag.replace(/\s/, '+');
             url += pageNumber ? '/' + pageNumber : '';
 
-            const $cheerio: Root = await this.instance.get(encodeURI(url);
+            const $cheerio: Root = await this.instance.get(encodeURI(url));
 
             return apiService.parsePage($cheerio);
         } catch (e) {

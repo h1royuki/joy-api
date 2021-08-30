@@ -9,25 +9,21 @@ export default class ContentElement {
     private _type: string|null;
     private _data: string|number|null;
     private _tag: string|null;
-    private _link: string| null;
+    private _link: string|null;
+    private _width: number|null;
+    private _height: number|null;
 
     constructor() {
         this._type = null;
         this._data = null;
         this._tag = null;
         this._link = null;
-    }
-
-    get tag(): string | null {
-        return this._tag;
+        this._width = null;
+        this._height = null;
     }
 
     set tag(value: string | null) {
         this._tag = value;
-    }
-
-    get type(): string | null {
-        return this._type;
     }
 
     set type(value: string | null) {
@@ -48,6 +44,14 @@ export default class ContentElement {
 
     set link(value: string | null) {
         this._link = value;
+    }
+
+    set height(value: number | null) {
+        this._height = value;
+    }
+
+    set width(value: number | null) {
+        this._width = value;
     }
 }
 

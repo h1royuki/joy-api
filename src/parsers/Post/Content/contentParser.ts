@@ -46,16 +46,15 @@ class ContentParser {
     }
 
     private static parseMediaContent(el: Element, object: ContentElement): ContentElement {
-        const children: Element = el.children[0];
+        let children: Element = el.children[0];
 
-        if (children.name === 'img') {
+        if (children.name === 'img' || children.name === 'a') {
+            children = children.children[0] ? children.children[0] : children;
+
             object.type = ContentElement.IMAGE_TYPE;
             object.data = children.attribs.src;
-        }
-
-        if (children.name === 'a') {
-            object.type = ContentElement.IMAGE_TYPE;
-            object.data = children.children[0] ? children.children[0].attribs.src : null;
+            object.height = children.attribs.height;
+            object.width = children.attribs.width;
         }
 
         if (children.name === 'span') {
